@@ -7,6 +7,7 @@ export class LoginPage{
     readonly signIn : Locator;
     readonly successMessage : Locator;
     readonly errorMessage : Locator;
+    readonly registerLink : Locator
 
     constructor(page : Page){
         this.page = page;
@@ -16,6 +17,7 @@ export class LoginPage{
         this.signIn = page.getByTestId('login-submit');
         this.successMessage = page.getByTestId('login-success');
         this.errorMessage = page.getByTestId('login-error');
+        this.registerLink = page.getByTestId('login-register');
     }
 
     async goto(){

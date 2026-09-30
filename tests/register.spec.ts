@@ -6,10 +6,7 @@ import { Register } from "./Pages/registerpage";
 test('User registration With correct rules',async({page})=>{
     const reg = new Register(page);
     await reg.goto();
-    await reg.emailInput.fill(registerusers.email);
-    await reg.passwordInput.fill(registerusers.password);
-    await reg.confirmPassword.fill(registerusers.confirmpassword);
-    await reg.register.click();
+    await reg.registeruser(registerusers.email,registerusers.password,registerusers.confirmpassword);
     await expect(page.getByText('Registration Successful')).toBeVisible();
 })
 

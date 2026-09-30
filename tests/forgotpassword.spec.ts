@@ -20,3 +20,17 @@ test('User can reset password', async ({ page }) => {
 
     await expect(page.getByText('Password Changed Successfully'));  
 });
+
+test('Cannot reset password with wrong security code', async ({ page }) => {
+
+    const pass = new forgotPass(page);
+
+    await pass.goto();
+    await pass.enterEmail('user@premiumbank.com');
+
+    await expect(pass.securityCode).toBeVisible();
+    await pass.enterSecurityCode('WRONG123');
+    await expect(pass.securityCode).toBeVisible();
+
+    await expect(pass.currentPassword).not.toBeVisible();
+});
